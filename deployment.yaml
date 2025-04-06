@@ -4,8 +4,12 @@ metadata:
   name: website-app
   labels:
     app: website
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: website-application=pavan050/website
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/website-application.update-strategy: latest
 spec:
-  replicas: 2
+  replicas: 3
   selector: 
    matchLabels:
     app: website
@@ -20,3 +24,4 @@ spec:
           imagePullPolicy: Always
           ports:
           - containerPort: 2000
+
